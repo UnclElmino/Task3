@@ -6,7 +6,7 @@ const app = express();
 const routePath = '/emilio_imam09_gmail_com';
 
 app.get(routePath, (req, res) => {
-    res.set('Content-Type', 'text/plain; charset=utf-8');
+    res.set('Content-Type', 'text/plain');
 
     const x = Number(req.query.x);
     const y = Number(req.query.y);
