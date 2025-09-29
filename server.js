@@ -10,6 +10,10 @@ app.get(routePath, (req, res) => {
 
     const x = Number(req.query.x);
     const y = Number(req.query.y);
+
+    const valid = Number.isInteger(x) && Number.isInteger(y) && x >= 0 && y >= 0;
+    if (!valid) return res.send('NaN');
+
     try {
         const result = lcm(x, y);
         res.send(String(result));
