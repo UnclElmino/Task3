@@ -14,7 +14,7 @@ app.get(routePath, (req, res) => {
     const xstr = req.query.x;
     const ystr = req.query.y;
 
-    if (!/^\d+$/.test(x) || !/^\d+$/.test(y)) {
+    if (!/^\d+$/.test(xstr) || !/^\d+$/.test(ystr)) {
       return res.send('NaN');
     }
 
