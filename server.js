@@ -3,7 +3,7 @@ const { lcm } = require('mathjs');
 
 const app = express();
 
-const routePath = '/emailio_imam09_gmail_com';
+const routePath = '/emilio_imam09_gmail_com';
 
 app.get(routePath, (req, res) => {
     res.set('Content-Type', 'text/plain; charset=utf-8');
