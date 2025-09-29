@@ -1,5 +1,8 @@
 const express = require('express');
-const { lcm } = require('mathjs');
+const { create, all } = require('mathjs');
+
+const config = { number: 'BigNumber'};
+const math = create(all, config);
 
 const app = express();
 
@@ -8,15 +11,16 @@ const routePath = '/emilio_imam09_gmail_com';
 app.get(routePath, (req, res) => {
     res.set('Content-Type', 'text/plain');
 
-    const x = Number(req.query.x);
-    const y = Number(req.query.y);
+    const x = math.bignumber(req.query.x);
+    const y = math.bignumber(req.query.y);
 
-    const valid = Number.isInteger(x) && Number.isInteger(y) && x >= 0 && y >= 0;
-    if (!valid) return res.send('NaN');
+    if (!x.isInteger() || !y.isInteger() || x.isNegative() || y.isNegative()) {
+      return res.send('NaN');
+    }
 
     try {
-        const result = lcm(x, y);
-        res.send(String(result));
+        const result = math.lcm(x, y);
+        res.send(result.toFixed());
     } catch {
         res.send('NaN');
     }
