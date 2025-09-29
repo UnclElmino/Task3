@@ -11,14 +11,17 @@ const routePath = '/emilio_imam09_gmail_com';
 app.get(routePath, (req, res) => {
     res.set('Content-Type', 'text/plain');
 
-    const x = math.bignumber(req.query.x);
-    const y = math.bignumber(req.query.y);
+    const xstr = req.query.x;
+    const ystr = req.query.y;
 
-    if (!x.isInteger() || !y.isInteger() || x.isNegative() || y.isNegative()) {
+    if (!/^\d+$/.test(x) || !/^\d+$/.test(y)) {
       return res.send('NaN');
     }
 
     try {
+        const x = math.bignumber(xstr);
+        const y = math.bignumber(ystr);
+
         const result = math.lcm(x, y);
         res.send(result.toFixed());
     } catch {
